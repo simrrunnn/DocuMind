@@ -7,7 +7,7 @@ A modular document ingestion pipeline built with LangChain that loads, splits, e
 - 🧠 Local embeddings with HuggingFace sentence-transformers
 - 💾 Persistent vector storage with ChromaDB
 
-## Project Structure
+```
 ├── indexing/
 │   ├── loader.py        # PDF loading logic
 │   ├── splitter.py      # Text splitting logic
@@ -15,6 +15,7 @@ A modular document ingestion pipeline built with LangChain that loads, splits, e
 ├── main.py              # Entry point
 ├── data/                # Place your PDF file here
 └── chroma_db/           # Auto-generated vector store
+```
 
 ## Setup
 pip install -r requirements.txt
