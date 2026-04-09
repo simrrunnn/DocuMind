@@ -1,4 +1,4 @@
-# DocuMind — RAG Pipeline with LangChain & ChromaDB
+# DocuMind - RAG Pipeline with LangChain & ChromaDB
 A modular document ingestion pipeline built with LangChain that loads, splits, embeds, and stores PDF documents into a persistent vector store — foundation for a full Retrieval-Augmented Generation (RAG) system.
 
 ## Features
@@ -18,5 +18,7 @@ A modular document ingestion pipeline built with LangChain that loads, splits, e
 ```
 
 ## Setup
+```
 pip install -r requirements.txt
 python main.py
+```
