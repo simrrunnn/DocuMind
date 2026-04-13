@@ -1,4 +1,3 @@
-
 from indexing.loader import load_document
 from indexing.splitter import split_documents
 from indexing.embedder import get_embeddings, create_vectorstore, load_vectorstore
