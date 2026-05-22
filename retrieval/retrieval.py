@@ -66,6 +66,7 @@ if query := st.chat_input("Ask a question..."):
         st.markdown(response)
 
     st.session_state.messages.append({"role": "assistant", "content": response})
+
 '''without streamlit
 
 from langchain_openai import ChatOpenAI
@@ -109,7 +110,7 @@ retriever = vectorstore.as_retriever(
 # Step 3 — Prompt
 prompt = ChatPromptTemplate.from_template("""
 You are a helpful assistant. Answer the question based only on the context below.
-If you don't know the answer, just say "I don't know".
+If you don't know the answer, just say "I don't have enough information to answer that question."
 
 Context: {context}
 
