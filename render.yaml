@@ -1,0 +1,38 @@
+services:
+  # FastAPI backend — must build from the repo root because backend/main.py
+  # imports the sibling `generation` and `indexing` packages.
+  - type: web
+    name: document-summariser-backend
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: FRONTEND_ORIGIN
+        value: https://document-summariser-frontend.onrender.com
+    # Uploads (./data/uploads) and the Chroma index (./chroma_db) are on local
+    # disk and will NOT survive a redeploy/restart on the free plan. Attach a
+    # persistent Disk (paid plans only) if you need that data to stick around:
+    # disk:
+    #   name: document-summariser-data
+    #   mountPath: /opt/render/project/src/data
+    #   sizeGB: 1
+
+  # Vite/React frontend — static build served from frontend/dist.
+  - type: web
+    name: document-summariser-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://document-summariser-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
